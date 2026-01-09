@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>BulkTech – New User Registration</title>
+    <link rel="stylesheet" th:href="@{/assets/CSS/layout.css}">
+    <style>
+        .reg-hero {
+          background: linear-gradient(135deg, #38bdf8, #22c55e);
+          color: white;
+          padding: 3rem 1.5rem 2rem;
+          text-align: center;
+          border-radius: 0 0 2rem 2rem;
+        }
+        .back-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: rgba(255,255,255,0.9);
+          text-decoration: none;
+          font-weight: 500;
+          margin-bottom: 1rem;
+        }
+        .reg-main {
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+        }
+        .form-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+        .form-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          margin-bottom: 0.5rem;
+        }
+        .form-subtitle {
+          font-size: 1.2rem;
+          color: var(--text-secondary);
+        }
+        .form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          margin-bottom: 2rem;
+        }
+        .form-group {
+          margin-bottom: 1.5rem;
+        }
+        .form-label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          color: var(--text-primary);
+        }
+        .form-input {
+          width: 100%;
+          padding: 1rem 1.2rem;
+          border: 2px solid var(--border);
+          border-radius: 1rem;
+          background: var(--bg-card);
+          color: var(--text-primary);
+          font-size: 1rem;
+          transition: all 0.2s ease;
+        }
+        .form-input:focus {
+          outline: none;
+          border-color: var(--accent-primary);
+          box-shadow: 0 0 0 4px rgba(56,189,248,0.1);
+        }
+        .form-row {
+          display: flex;
+          gap: 1rem;
+        }
+        .form-col {
+          flex: 1;
+        }
+        .address-section {
+          grid-column: 1 / -1;
+          background: var(--bg-card);
+          padding: 1.5rem;
+          border-radius: 1rem;
+          border: 1px solid var(--border);
+        }
+        .address-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 1.5rem;
+        }
+        .checkbox-group {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.8rem;
+          margin-top: 1rem;
+        }
+        .checkbox-custom {
+          width: 20px;
+          height: 20px;
+          border: 2px solid var(--border);
+          border-radius: 0.4rem;
+          cursor: pointer;
+          position: relative;
+        }
+        .checkbox-custom:checked {
+          background: var(--accent-primary);
+          border-color: var(--accent-primary);
+        }
+        .checkbox-custom:checked::after {
+          content: '✓';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-weight: bold;
+          font-size: 0.8rem;
+        }
+        .submit-section {
+          grid-column: 1 / -1;
+          text-align: center;
+          padding: 2rem;
+          background: var(--bg-card);
+          border-radius: 1.5rem;
+          border: 2px solid var(--border);
+        }
+        .submit-btn {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white !important;  /* Add this line */
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+        }
+        .submit-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 20px 40px rgba(56,189,248,0.4);
+        }
+        @media (max-width: 768px) {
+          .form-grid, .address-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="reg-hero">
+    <a th:href="@{/index}" class="back-btn">← Back to Portal</a>
+    <h1 style="font-size: 2.8rem; margin-bottom: 0.5rem;">Create Account</h1>
+    <p style="font-size: 1.3rem; opacity: 0.95;">Join BulkTech and start your fitness journey</p>
+</div>
+
+<main class="main">
+    <section class="reg-main">
+        <div class="form-header">
+            <div class="form-title">New User Registration</div>
+            <div class="form-subtitle">Fill in your details to get started</div>
+        </div>
+
+        <form class="form-grid">
+            <!-- Personal Info -->
+            <div class="form-group form-col">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" placeholder="John Doe" required />
+            </div>
+            <div class="form-group form-col">
+                <label class="form-label">Mobile Number</label>
+                <input type="tel" class="form-input" placeholder="+91 98765 43210" required />
+            </div>
+
+            <div class="form-group form-col">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="john.doe@email.com" required />
+            </div>
+            <div class="form-group form-col">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-input" required />
+            </div>
+
+            <!-- Address Section -->
+            <div class="address-section">
+                <div class="form-label" style="font-size: 1.1rem; margin-bottom: 1rem;">📍 Gym Address</div>
+                <div class="address-grid">
+                    <div>
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-input" placeholder="123 Fitness Street, Ambattur" />
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-input" placeholder="Chennai" />
+                        </div>
+                        <div>
+                            <label class="form-label">Pincode</label>
+                            <input type="text" class="form-input" placeholder="600053" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gym Details -->
+            <div class="form-group form-col">
+                <label class="form-label">Gym Branch</label>
+                <select class="form-input">
+                    <option>Ambattur Main Branch</option>
+                    <option>Anna Nagar</option>
+                    <option>Tambaram</option>
+                </select>
+            </div>
+            <div class="form-group form-col">
+                <label class="form-label">Membership Type</label>
+                <select class="form-input">
+                    <option>Monthly</option>
+                    <option>Quarterly</option>
+                    <option>Annual</option>
+                </select>
+            </div>
+
+            <!-- Terms -->
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Terms & Conditions</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-custom" onclick="toggleCheckbox(this)"></div>
+                    <div style="font-size: 0.95rem;">
+                        I agree to the <strong>Terms of Service</strong> and <strong>Privacy Policy</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" style="color: #ffffff !important; background: linear-gradient(135deg, #38bdf8, #22c55e) !important;">Create My Account</button>
+
+            </div>
+        </form>
+    </section>
+</main>
+
+<script>
+    function toggleCheckbox(el) {
+      el.classList.toggle('checked');
+    }
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('🎉 Account created successfully! Welcome to BulkTech.\n\nLater: POST to /api/register endpoint.');
+      window.location.href = 'daily-workout.html';
+    });
+</script>
+</body>
+</html>

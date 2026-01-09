@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <title>BulkTech – Trainer Dashboard</title>
+  <link rel="stylesheet" th:href="@{/assets/CSS/layout.css}">
+
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">
+    <img th:src="@{/assets/images/logo.png}" alt="BulkTech Logo" />
+    <div>
+      <div class="logo-text-main">BulkTech</div>
+      <div class="logo-text-sub">Trainer Workspace</div>
+    </div>
+  </div>
+
+  <div class="nav-section-title">Overview</div>
+  <div class="nav-link active">
+    <img th:src="@{/assets/images/dashboard.jpg}" alt="Dashboard icon" />
+    Dashboard
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/members.jpg}" alt="Members icon" />
+    My Members
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/sessions.jpg}" alt="Sessions icon" />
+    Sessions
+  </div>
+
+  <div class="nav-section-title">Tracking</div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/icon-attendance.png}" alt="Attendance icon" />
+    Attendance
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/icon-progress.png}" alt="Progress icon" />
+    Progress Logs
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div>
+        <div class="topbar-title">Trainer · Today Overview</div>
+        <div class="topbar-sub">Member workouts, attendance, and progress in one place</div>
+      </div>
+    </div>
+    <div class="topbar-branch">Branch: Ambattur</div>
+    <header class="topbar">
+      <a th:href="@{/memberlogin}" style="color: var(--text-secondary); text-decoration: none;">← Back to Login</a>
+    </header>
+  </header>
+
+  <section class="content">
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Assigned Members</div>
+        </div>
+        <div class="card-value">18</div>
+        <div class="card-sub">3 new this week</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Today Sessions</div>
+        </div>
+        <div class="card-value">9</div>
+        <div class="card-sub">2 completed</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Avg Attendance</div>
+        </div>
+        <div class="card-value">87%</div>
+        <div class="card-sub">Last 30 days</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Avg BMI Change</div>
+        </div>
+        <div class="card-value">-1.8</div>
+        <div class="card-sub">Last 8 weeks</div>
+      </div>
+    </div>
+
+    <div class="card table-card">
+      <div class="table-header-row">
+        <div class="card-title">My Members Today</div>
+        <div class="table-actions">
+          <input class="input" placeholder="Search member..." style="max-width:200px;" />
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr>
+            <th>Member</th>
+            <th>Goal/Plan</th>
+            <th>Today Status</th>
+            <th>Last BMI</th>
+            <th>Last Workout</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Sanjay M</td>
+            <td>Weight Loss</td>
+            <td><span class="badge badge-green">Checked-in</span></td>
+            <td>26.3</td>
+            <td>Push/Pull</td>
+            <td><button class="btn btn-ghost" style="padding:.25rem .6rem;">Update</button></td>
+          </tr>
+          <tr>
+            <td>Nivetha S</td>
+            <td>Strength</td>
+            <td><span class="badge badge-amber">Scheduled</span></td>
+            <td>23.1</td>
+            <td>Legs</td>
+            <td><button class="btn btn-ghost" style="padding:.25rem .6rem;">Update</button></td>
+          </tr>
+          <tr>
+            <td>Mohammed Imran</td>
+            <td>General</td>
+            <td><span class="badge badge-red">Absent</span></td>
+            <td>29.8</td>
+            <td>Cardio</td>
+            <td><button class="btn btn-ghost" style="padding:.25rem .6rem;">Update</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-title">Progress Snapshot (Demo)</div>
+      <div class="chart-placeholder">
+        Progress chart – later bind to /api/trainer/{id}/progress
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

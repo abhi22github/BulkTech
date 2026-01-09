@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <title>BulkTech – Weekly Workouts</title>
+  <link rel="stylesheet" th:href="@{/assets/CSS/layout.css}">
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      border-radius: 0 0 2rem 2rem;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
+    }
+    .back-btn:hover {
+      color: white;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    .workout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    .workout-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .workout-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #38bdf8, #22c55e);
+    }
+    .workout-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.2);
+    }
+    .workout-day {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+    .workout-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .workout-focus {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .focus-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .workout-duration {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    .workout {
+  flex-grow: 1;
+  width: 100%;
+  object-fit: cover;
+}
+  </style>
+</head>
+<body>
+<div class="hero-section">
+  <a th:href="@{/index}" class="back-btn">← Back to Portal</a>
+  <h1 class="hero-title">Weekly Workout Plans</h1>
+  <p class="hero-subtitle">Choose your training day and follow the standard gym routine</p>
+  <img class="workout" th:src="@{/assets/images/workout.jpg}" alt="Workout image">
+</div>
+
+<main class="main">
+  <section class="content">
+    <div class="workout-grid">
+      <a href="#" class="workout-card" onclick="selectWorkout(1)">
+        <div class="workout-day">Monday</div>
+        <div class="workout-title">Full Body Strength</div>
+        <div class="workout-focus">
+          <span class="focus-tag">Squats</span>
+          <span class="focus-tag">Bench Press</span>
+          <span class="focus-tag">Rows</span>
+        </div>
+        <div class="workout-duration">⏱️ 50 min • 🔥 12 type of exercises</div>
+      </a>
+
+      <a href="#" class="workout-card" onclick="selectWorkout(2)">
+        <div class="workout-day">Tuesday</div>
+        <div class="workout-title">Lower Body Power</div>
+        <div class="workout-focus">
+          <span class="focus-tag">Deadlifts</span>
+          <span class="focus-tag">Leg Press</span>
+          <span class="focus-tag">Calf Raises</span>
+        </div>
+        <div class="workout-duration">⏱️ 45 min • 💪 Heavy</div>
+      </a>
+
+      <a href="#" class="workout-card" onclick="selectWorkout(3)">
+        <div class="workout-day">Wednesday</div>
+        <div class="workout-title">Upper Body Push</div>
+        <div class="workout-focus">
+          <span class="focus-tag">Biceps</span>
+          <span class="focus-tag">Triceps</span>
+          <span class="focus-tag">Latte Pull Down</span>
+        </div>
+        <div class="workout-duration">⏱️ 55 min • 💪 Heavy</div>
+      </a>
+
+      <a href="#" class="workout-card" onclick="selectWorkout(4)">
+        <div class="workout-day">Thursday</div>
+        <div class="workout-title">Light Workout</div>
+        <div class="workout-focus">
+          <span class="focus-tag">Treadmill</span>
+          <span class="focus-tag">Plank</span>
+          <span class="focus-tag">Squats</span>
+        </div>
+        <div class="workout-duration">⏱️ 55 min • 💪 Light</div>
+      </a>
+
+      <a href="#" class="workout-card" onclick="selectWorkout(5)">
+        <div class="workout-day">Friday</div>
+        <div class="workout-title">Fat Loss Workout</div>
+        <div class="workout-focus">
+          <span class="focus-tag">Running</span>
+          <span class="focus-tag">Step Board</span>
+          <span class="focus-tag">Pull ups</span>
+        </div>
+        <div class="workout-duration">⏱️ 35 min • 💪 Light</div>
+      </a>
+
+      <a href="#" class="workout-card" onclick="selectWorkout(4)">
+        <div class="workout-day">Saturday</div>
+        <div class="workout-title">Back Workout</div>
+        <div class="workout-focus">
+          <span class="focus-tag">Latte</span>
+          <span class="focus-tag">Reverse Abs Pull Down</span>
+          <span class="focus-tag">Leg Curl</span>
+        </div>
+        <div class="workout-duration">⏱️ 45 min • 💪 Mid-level</div>
+      </a>
+    </div>
+  </section>
+</main>
+</body>

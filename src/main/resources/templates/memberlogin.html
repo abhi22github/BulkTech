@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <title>BulkTech – Member Login</title>
+  <link rel="stylesheet" th:href="@{/assets/CSS/layout.css}">
+</head>
+<body>
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-title">Gym Member Portal</div>
+    <a th:href="@{/index}" style="color: var(--text-secondary); text-decoration: none;">← Back to Portal</a>
+  </header>
+
+  <section class="content" style="max-width: 500px; margin: 0 auto;">
+    <div class="card" style="padding: 2.5rem;">
+      <h2 style="text-align: center; margin-bottom: 1.5rem;">Select Your Role</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+        <a class="btn btn-primary" th:href="@{/login/Admin}">
+          👨‍💼 Admin Dashboard
+        </a>
+        <a class="btn btn-primary" th:href="@{/login/Trainer}">
+          👨‍🏋️ Trainer Dashboard
+        </a>
+      </div>
+
+
+    </div>
+  </section>
+</main>
+
+
+</body>
+</html>

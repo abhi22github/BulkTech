@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <title>BulkTech – Admin Dashboard</title>
+  <link rel="stylesheet" th:href="@{/assets/CSS/layout.css}">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">
+    <!-- Logo image placeholder -->
+    <img th:src="@{/assets/images/logo.png}" alt="BulkTech Logo" />
+    <div>
+      <div class="logo-text-main">BulkTech</div>
+      <div class="logo-text-sub">Enterprise Gym Platform</div>
+    </div>
+  </div>
+
+  <div class="nav-section-title">Overview</div>
+  <div class="nav-link active">
+    <img th:src="@{/assets/images/dashboard.jpg}" alt="Dashboard icon" />
+    Dashboard
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/branch.jpg}" alt="Branches icon" />
+    Branches
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/members.jpg}" alt="Members icon" />
+    Members
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/trainer.jpg}" alt="Trainers icon" />
+    Trainers
+  </div>
+
+  <div class="nav-section-title">Billing</div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/plans.png}" alt="Plans icon" />
+    Plans & Pricing
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/billing.png}" alt="Billing icon" />
+    Payments
+  </div>
+
+  <div class="nav-section-title">Analytics</div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/reports.png}" alt="Reports icon" />
+    Reports
+  </div>
+  <div class="nav-link">
+    <img th:src="@{/assets/images/activity.png}" alt="Activity icon" />
+    Activity Logs
+  </div>
+
+  <div style="margin-top:auto;font-size:.75rem;color:#4b5563;padding:.8rem .4rem;">
+    © 2026 BulkTech
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div>
+        <div class="topbar-title">Admin · Global Overview</div>
+        <div class="topbar-sub">Multi-branch metrics and member lifecycle at a glance</div>
+      </div>
+    </div>
+    <div class="topbar-branch">Org: BulkTech Fitness Pvt Ltd</div>
+    <header class="topbar">
+      <a th:href="@{/memberlogin}" style="color: var(--text-secondary); text-decoration: none;">← Back to Login</a>
+    </header>
+  </header>
+
+  <section class="content">
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Active Members</div>
+          <div class="card-icon members"></div>
+        </div>
+        <div class="card-value" id="activeMembers">1,248</div>
+        <div class="card-sub">+32 this week</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Monthly Revenue</div>
+          <div class="card-icon card-icon-revenue"></div>
+        </div>
+        <div class="card-value" id="monthlyRevenue">₹ 4,85,000</div>
+        <div class="card-sub">+12% vs last month</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Today Check-ins</div>
+          <div class="card-icon card-icon-attendance"></div>
+        </div>
+        <div class="card-value" id="todayCheckins">186</div>
+        <div class="card-sub">Till 6:00 PM</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Active Trainers</div>
+          <div class="card-icon card-icon-trainers"></div>
+        </div>
+        <div class="card-value" id="activeTrainers">24</div>
+        <div class="card-sub">Avg rating 4.6</div>
+      </div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-title">Attendance & Revenue Trend (Demo)</div>
+      <div class="chart-placeholder" id="attendanceChart">
+        <!-- Placeholder background image: images/chart-placeholder.png -->
+        Demo chart background – later replace with canvas + Chart.js or custom SVG
+      </div>
+    </div>
+
+    <div class="card table-card">
+      <div class="table-header-row">
+        <div class="card-title">Recent Memberships</div>
+        <div class="table-actions">
+          <button class="btn btn-ghost" onclick="openBranchModal()">+ Add Branch</button>
+          <button class="btn btn-ghost">Export</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr>
+            <th>Member</th>
+            <th>Branch</th>
+            <th>Plan</th>
+            <th>Expiry</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody id="recentMembersBody">
+          <tr>
+            <td>Ravi Kumar</td>
+            <td>Ambattur</td>
+            <td>Annual Pro</td>
+            <td>12 Jan 2027</td>
+            <td><span class="badge badge-green">Active</span></td>
+          </tr>
+          <tr>
+            <td>Ananya Iyer</td>
+            <td>Anna Nagar</td>
+            <td>Quarterly</td>
+            <td>02 Mar 2026</td>
+            <td><span class="badge badge-amber">Expiring Soon</span></td>
+          </tr>
+          <tr>
+            <td>Vikram Singh</td>
+            <td>Ambattur</td>
+            <td>Monthly</td>
+            <td>06 Jan 2026</td>
+            <td><span class="badge badge-red">Expired</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card table-card">
+      <div class="card-title">Top Trainers (Demo)</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr>
+            <th>Trainer</th>
+            <th>Branch</th>
+            <th>Active Members</th>
+            <th>Avg. Attendance</th>
+            <th>Rating</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Arun Kumar</td>
+            <td>Ambattur</td>
+            <td>32</td>
+            <td>91%</td>
+            <td>4.8</td>
+          </tr>
+          <tr>
+            <td>Meera N</td>
+            <td>Anna Nagar</td>
+            <td>27</td>
+            <td>88%</td>
+            <td>4.7</td>
+          </tr>
+          <tr>
+            <td>Prakash R</td>
+            <td>Tambaram</td>
+            <td>25</td>
+            <td>83%</td>
+            <td>4.5</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Modal: Add Branch -->
+<div class="modal-backdrop" id="branchModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add New Branch</div>
+      <button class="btn-ghost" onclick="toggleBranchModal(false)">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;flex-direction:column;gap:.7rem;">
+        <label>
+          <span>Branch Name</span><br />
+          <input id="branchNameInput" class="input" />
+        </label>
+        <label>
+          <span>Location</span><br />
+          <input id="branchLocationInput" class="input" />
+        </label>
+        <label>
+          <span>Capacity</span><br />
+          <input id="branchCapacityInput" class="input" type="number" />
+        </label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="toggleBranchModal(false)">Cancel</button>
+      <button class="btn btn-primary" onclick="saveBranch()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openBranchModal() {
+    toggleBranchModal(true);
+  }
+
+  function toggleBranchModal(show) {
+    const modal = document.getElementById("branchModal");
+    modal.style.display = show ? "flex" : "none";
+  }
+
+  function saveBranch() {
+    const name = document.getElementById("branchNameInput").value.trim();
+    const location = document.getElementById("branchLocationInput").value.trim();
+    const capacity = document.getElementById("branchCapacityInput").value.trim();
+
+    if (!name) {
+      alert("Enter branch name");
+      return;
+    }
+    alert(
+      "Branch '" + name + "' at " + location + " (capacity " + capacity + ") saved (demo only)."
+    );
+    toggleBranchModal(false);
+  }
+
+  // Demo: simulate check-ins growing
+  document.addEventListener("DOMContentLoaded", () => {
+    const checkins = document.getElementById("todayCheckins");
+    let value = 186;
+    setInterval(() => {
+      value += Math.round(Math.random() * 3);
+      checkins.textContent = value;
+    }, 5000);
+  });
+</script>
+</body>
+</html>

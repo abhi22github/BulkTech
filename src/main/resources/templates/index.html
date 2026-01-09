@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BulkTech – Gym Portal</title>
+  <link rel="stylesheet" th:href="@{/assets/CSS/layout.css}">
+
+  <style>
+    * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+
+ html, body {
+   width: 100%;
+   height: 100%;
+   overflow-x: hidden;
+   font-family: system-ui, -apple-system, sans-serif;
+   background: #0f172a; /* Fallback color matching dark theme */
+ }
+
+ .landing-hero {
+   width: 100%;             /* Force full width */
+   min-height: 100vh;       /* Full viewport height */
+   padding: 8rem 2rem 4rem;
+
+   /* Gradient fix - ensure it covers everything */
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   background-size: cover;
+   background-attachment: fixed;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   position: relative;
+     .landing-hero::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100" height="100" fill="url(%23a)"/></svg>');
+       pointer-events: none;
+     }
+     .logo-section {
+       margin-bottom: 3rem;
+       z-index: 1;
+       position: relative;
+     }
+     .logo {
+       width: 80px;
+       height: 80px;
+       border-radius: 20px;
+       background: rgba(255,255,255,0.2);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 2.5rem;
+       margin: 0 auto 1rem;
+     }
+     .landing-title {
+       font-size: clamp(2.2rem, 6vw, 4rem);
+       font-weight: 800;
+       margin-bottom: 1.2rem;
+       color: white;
+       z-index: 1;
+       position: relative;
+       line-height: 1.1;
+     }
+     .landing-subtitle {
+       font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+       max-width: 650px;
+       margin: 0 auto 3.5rem;
+       color: rgba(255,255,255,0.92);
+       line-height: 1.6;
+       z-index: 1;
+       position: relative;
+     }
+     .choice-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+       gap: 2.5rem;
+       max-width: 1100px;
+       width: 100%;
+       z-index: 1;
+       position: relative;
+     }
+     .choice-card {
+       background: rgba(255,255,255,0.15);
+       backdrop-filter: blur(25px);
+       border-radius: 2.2rem;
+       padding: 3rem 2.2rem;
+       border: 1px solid rgba(255,255,255,0.25);
+       cursor: pointer;
+       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+       text-decoration: none;
+       color: inherit;
+       position: relative;
+       overflow: hidden;
+     }
+     .choice-card::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 5px;
+       background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+     }
+     .choice-card:hover {
+       transform: translateY(-12px) scale(1.02);
+       box-shadow: 0 35px 70px rgba(0,0,0,0.4);
+       background: rgba(255,255,255,0.25);
+       border-color: rgba(255,255,255,0.4);
+     }
+     .choice-icon {
+       width: 90px;
+       height: 90px;
+       margin: 0 auto 1.8rem;
+       background: rgba(255,255,255,0.3);
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 2.8rem;
+       transition: all 0.3s ease;
+     }
+     .choice-card:hover .choice-icon {
+       background: rgba(255,255,255,0.5);
+       transform: scale(1.1) rotate(5deg);
+     }
+     .choice-title {
+       font-size: 1.7rem;
+       font-weight: 700;
+       margin-bottom: 1.2rem;
+       letter-spacing: -0.02em;
+     }
+     .choice-desc {
+       color: rgba(255,255,255,0.88);
+       line-height: 1.65;
+       font-size: 1.05rem;
+     }
+     @media (max-width: 768px) {
+       .choice-grid {
+         grid-template-columns: 1fr;
+         gap: 2rem;
+         padding: 0 1rem;
+       }
+       .landing-hero {
+         padding: 1.5rem 1rem;
+       }
+     }
+  </style>
+</head>
+<body>
+<div class="landing-hero">
+  <div class="logo-section">
+    <div class="logo">🏋️‍♂️</div>
+  </div>
+
+  <h1 class="landing-title">Welcome to BulkTech</h1>
+  <p class="landing-subtitle">
+    Complete gym management platform for users, members, trainers and staff.
+    Choose your access type below.
+  </p>
+
+  <div class="choice-grid">
+    <a th:href="@{/daily}" class="choice-card">
+      <div class="choice-icon">💪</div>
+      <div class="choice-title">Gym User</div>
+      <div class="choice-desc">
+        Access daily workout routines, track progress, and follow gym programs without login.
+      </div>
+    </a>
+
+    <a th:href="@{/memberlogin}" class="choice-card">
+      <div class="choice-icon">👥</div>
+      <div class="choice-title">Gym Member</div>
+      <div class="choice-desc">
+        Full member portal access: Admin, Trainer, or Staff dashboard with management features.
+      </div>
+    </a>
+
+    <a th:href="@{/new-user}" class="choice-card">
+      <div class="choice-icon">✨</div>
+      <div class="choice-title">New User Registration</div>
+      <div class="choice-desc">
+        Create your gym account and start tracking workouts with BulkTech platform.
+      </div>
+    </a>
+  </div>
+</div>
+</body>
+</html>
