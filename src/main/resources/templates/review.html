@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>BulkTech | Review</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 2.8rem;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+      color: white;
+    }
+
+    .review-card h2 {
+      text-align: center;
+      margin-bottom: 0.6rem;
+      font-size: 1.8rem;
+    }
+
+    .review-card p {
+      text-align: center;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .stars input {
+      display: none;
+    }
+
+    .stars label {
+      font-size: 2.2rem;
+      cursor: pointer;
+      opacity: 0.4;
+      transition: 0.2s;
+    }
+
+    .stars input:checked ~ label,
+    .stars label:hover,
+    .stars label:hover ~ label {
+      opacity: 1;
+      color: gold;
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 90px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #ff5722;
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e64a19;
+      transform: translateY(-2px);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.4rem;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="review-card">
+  <h2>Rate Your Experience</h2>
+  <p>Your feedback helps BulkTech grow 💪</p>
+
+  <form th:action="@{/submit-review}" method="post">
+
+    <!-- STAR RATING -->
+    <div class="stars">
+      <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
+      <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+      <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+      <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+      <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+    </div>
+
+    <!-- NAME -->
+    <div class="form-group">
+      <input type="text" name="username" placeholder="Your name (optional)">
+    </div>
+
+    <!-- MESSAGE -->
+    <div class="form-group">
+      <textarea name="message" placeholder="Tell us what you liked or what we can improve…"></textarea>
+    </div>
+
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <a th:href="@{/index}" class="back-link">← Back to Home</a>
+</div>
+
+</body>
+</html>

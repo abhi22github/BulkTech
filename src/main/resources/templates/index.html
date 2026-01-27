@@ -155,13 +155,64 @@
          padding: 1.5rem 1rem;
        }
      }
+    .logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  overflow: hidden; /* Important */
+}
+
+.logo img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+    .review-fab {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+
+  padding: 12px 20px;
+  border-radius: 999px; /* bubble shape */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.review-fab:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255, 255, 255, 0.35);
+}
+
   </style>
 </head>
 <body>
+
+
 <div class="landing-hero">
   <div class="logo-section">
-    <div class="logo">🏋️‍♂️</div>
+    <div class="logo">
+      <a th:href="@{/}">
+      <img th:src="@{/assets/images/logo.png}" alt="BulkTech">
+      </a>
+    </div>
   </div>
+  <a th:href="@{/review}" class="review-fab">Review</a>
 
   <h1 class="landing-title">Welcome to BulkTech</h1>
   <p class="landing-subtitle">
@@ -170,7 +221,7 @@
   </p>
 
   <div class="choice-grid">
-    <a th:href="@{/daily}" class="choice-card">
+    <a th:href="@{/logins}" class="choice-card">
       <div class="choice-icon">💪</div>
       <div class="choice-title">Gym User</div>
       <div class="choice-desc">
